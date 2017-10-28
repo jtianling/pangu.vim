@@ -40,7 +40,7 @@ autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing(
 ```
 
 > ~~**注意: 目前只对纯文本格式的文件支持较好, 其他如 html 等, 请谨慎开启. **~~
->
+> 在代码中开启需要谨慎, 我个人因为注释都习惯用英文, 所以应该不会有问题.  (未经大规模测试)  
 > 如果有合适的文件格式推荐, 请提交 [Issue](https://github.com/hotoo/pangu.vim/issues)
 
 ## 安装
