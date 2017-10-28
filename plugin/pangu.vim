@@ -13,7 +13,22 @@ function! PanGuSpacingCore()
         let b:curcol = col(".")
         let b:curline = line(".")
 
-        " 汉字后的标点符号，转成全角符号。
+        " 所有中文标点符号，转成半角英文符号。并留有空格
+        silent! %s/。/. /g
+        silent! %s/，/, /g
+        silent! %s/；/; /g
+        silent! %s/！/! /g
+        silent! %s/：/: /g
+        silent! %s/？/? /g
+        silent! %s/（/ (/g
+        silent! %s/）/) /g
+        silent! %s/『/ "/g
+        silent! %s/』/" /g
+        silent! %s/《/ "/g
+        silent! %s/》/" /g
+        silent! %s/、/, /g
+
+        " 汉字后的标点符号，转成全角符号。(不要)
         "silent! %s/\([\u4e00-\u9fa5\u3040-\u30FF]\)\.\($\|\s\+\)/\1。/g
         "silent! %s/\([\u4e00-\u9fa5\u3040-\u30FF]\),\s*/\1，/g
         "silent! %s/\([\u4e00-\u9fa5\u3040-\u30FF]\);\s*/\1；/g
@@ -30,10 +45,11 @@ function! PanGuSpacingCore()
         " TODO: 半角单双引号无法有效判断起始和结束，以正确替换成全角单双引号。
         " 可以考虑通过标识符号提醒。
 
-        " #11: 根据《标点符号用法》，重复的感叹号、问号不允许超过 3 个。
+        " #11: 根据《标点符号用法》，重复的感叹号、问号不允许超过 3
+        " 个。(为了防止对程序的不良作用, 也关闭)
         " [标点符号用法 GB/T 15834 2011](http://www.moe.gov.cn/ewebeditor/uploadfile/2015/01/13/20150113091548267.pdf)
-        silent! %s/\([！？]\)\1\{3,}/\1\1\1/g
-        silent! %s/\([。，；：、“”『』〖〗·・《》]\)\1\{1,}/\1/g
+        "silent! %s/\([！？]\)\1\{3,}/\1\1\1/g
+        "silent! %s/\([。，；：、“”『』〖〗·・《》]\)\1\{1,}/\1/g
 
         " 全角数字。
         silent! %s/０/0/g
